@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="郑茁,日记,博客,柿竹园">
+  <meta name="description" content="记录每天的生活">
+  <link rel="stylesheet" th:href="@{/css/common.css}"/>
+  <link rel="shortcut icon" th:href="@{/img/favicon.ico}"/>
+  <link rel="bookmark" th:href="@{/img/favicon.ico}"/>
+  <title>首页 - 郑茁的官方网站</title>
+  <style>
+
+    hr {
+      margin: 0.3rem 0 1.5rem 0
+    }
+
+    h2 {
+      text-align: center;
+      margin-top: 1.2rem;
+    }
+
+    .content {
+      font-size: 1.35rem;
+      margin-bottom: 1.5rem;
+      padding: 0.5rem;
+      letter-spacing: 0.15rem;
+      line-height: 2rem;
+    }
+
+    small{
+      font-size: 0.8rem;
+      color: #6c757d;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header" id="top">
+    <a th:href="@{/}">郑茁的官方网站</a>
+  </div>
+
+  <div class="container">
+    <div class="content">
+      <h2 th:text="${article.title}"></h2>
+      <small th:text="'提交时间：'+${#dates.format(article.createDate,'yyyy年MM月dd日 HH:mm:ss')}">2020年9月20日 13:33:55</small>
+      <hr />
+      <div th:utext="${article.content}"></div>
+    </div>
+
+    <div class="footer">
+      <P><a th:href="@{/}">郑茁的官方网站</a> @Copyright 2020</P>
+      <p><a href="http://beian.bizcn.com/login.jsp">湘ICP备18003344号</a> </p>
+    </div>
+  </div>
+
+</body>
+
+</html>

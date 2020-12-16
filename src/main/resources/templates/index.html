@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="baidu-site-verification" content="code-C6vnVu8Kd9" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="郑茁,日记,博客,柿竹园">
+  <meta name="description" content="记录每天的生活">
+  <link rel="stylesheet" th:href="@{/css/common.css}"/>
+  <link rel="shortcut icon" th:href="@{/img/favicon.ico}"/>
+  <link rel="bookmark" th:href="@{/img/favicon.ico}"/>
+  <title>首页 - 郑茁的官方网站</title>
+  <style>
+
+    .container .row {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      border: 1px solid gray;
+      margin: 1.5rem;
+      padding: 1rem;
+    }
+
+    .row img {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .content {
+      margin: 0.8rem;
+      font-size: 1.3rem;
+    }
+
+    .content .info {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 4;
+    }
+
+    .info {
+      margin: 0.8rem 0;
+    }
+
+    h3 {
+      margin-top: 0.8rem;
+    }
+
+    .read {
+      text-align: right;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header" id="top">
+    <a th:href="@{/}">郑茁的官方网站</a>
+  </div>
+
+  <h2 class="log">随心日记</h2>
+
+  <div class="container">
+
+    <div class="row" th:each="item : ${articles}">
+      <img th:src="@{/image/} + ${item.imgUrl}"/>
+      <div class="content">
+        <h3 th:text="${item.title}"></h3>
+        <p class="info" th:text="${item.summary}"></p>
+        <p class="read"><a th:href="@{/article/} + ${item.id}">阅读全文</a></p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <P><a th:href="@{/}">郑茁的官方网站</a> @Copyright 2020</P>
+      <p><a href="http://beian.bizcn.com/login.jsp">湘ICP备18003344号</a> </p>
+    </div>
+  </div>
+</body>
+
+</html>
