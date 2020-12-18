@@ -5,7 +5,9 @@ import com.github.pagehelper.PageInfo;
 import com.zz.blog.constant.BlogConstant;
 import com.zz.blog.entity.Article;
 import com.zz.blog.mapper.ArticleMapper;
+import com.zz.blog.util.BlogUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.system.ApplicationHome;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,7 +27,7 @@ public class ArticleService {
     private ArticleMapper articleMapper;
 
     @Autowired
-    private String jarPath;
+    private BlogUtil blogUtil;
 
     public List<Article> findArticleList() {
         return articleMapper.findArticleList(new Article());
@@ -54,7 +56,7 @@ public class ArticleService {
 
             // 拼接uuid和后缀名
             String fName = uuid + suffix;
-            String destDirPath = jarPath + BlogConstant.UPLOAD_DIR;
+            String destDirPath = blogUtil.getJarPath() + BlogConstant.UPLOAD_DIR;
             File destDirs = new File(destDirPath);
             if (!destDirs.exists()) {
                 destDirs.mkdirs();
@@ -92,7 +94,7 @@ public class ArticleService {
 
             // 拼接uuid和后缀名
             String fName = uuid + suffix;
-            String destDirPath = jarPath + BlogConstant.UPLOAD_DIR;
+            String destDirPath = blogUtil.getJarPath() + BlogConstant.UPLOAD_DIR;
             File destDirs = new File(destDirPath);
             if (!destDirs.exists()) {
                 destDirs.mkdirs();
@@ -105,7 +107,7 @@ public class ArticleService {
             Article article = articleMapper.findById(articleVO.getId());
 
             // 删除之前的图片
-            File oldFile = new File(jarPath + BlogConstant.UPLOAD_DIR + article.getImgUrl());
+            File oldFile = new File(blogUtil.getJarPath() + BlogConstant.UPLOAD_DIR + article.getImgUrl());
             oldFile.delete();
 
             article.setTitle(articleVO.getTitle());

@@ -1,6 +1,7 @@
 package com.zz.blog.controller;
 
 import com.zz.blog.constant.BlogConstant;
+import com.zz.blog.util.BlogUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,14 +17,14 @@ import java.io.*;
 public class ImageController {
 
     @Autowired
-    private String jarPath;
+    private BlogUtil blogUtil;
 
     @GetMapping("/{imgName}")
     public void getPicture(@PathVariable("imgName") String imgName,
                            HttpServletRequest request,
                            HttpServletResponse response) throws IOException {
         // 拼接文件地址
-        String sb = jarPath + BlogConstant.UPLOAD_DIR + imgName;
+        String sb = blogUtil.getJarPath() + BlogConstant.UPLOAD_DIR + imgName;
 
         // 判断图片后缀名
         int lastIndexOf = imgName.lastIndexOf(".");
