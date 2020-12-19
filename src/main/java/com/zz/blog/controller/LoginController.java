@@ -11,6 +11,7 @@ public class LoginController {
     @RequestMapping("/login")
     public String login(Model model, UserVO user) {
         model.addAttribute("user", user);
+        System.out.println(123);
         return "login";
     }
 }
