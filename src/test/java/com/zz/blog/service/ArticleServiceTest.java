@@ -48,5 +48,6 @@ public class ArticleServiceTest {
         when(list.get(0)).thenReturn("Hello World");
         System.out.println(list.get(0));
         System.out.println(list.size());
+        System.out.println("测试fetch");
     }
 }
